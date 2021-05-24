@@ -1,16 +1,27 @@
 <template>
   <div id="app">
-    <Avatar url='https://portrait.gitee.com/uploads/avatars/user/1623/4871556_canlan0711_1578976114.png!avatar200' size="50"></Avatar>
-    <Avatar url='https://portrait.gitee.com/uploads/avatars/user/1623/4871556_canlan0711_1578976114.png!avatar200' size="120"></Avatar>
+    <icons type="home"></icons>
+    <icons type="arrowDown"></icons>
   </div>
 </template>
 
 <script>
-import Avatar from '@/components/Avatar'
+import Icons from '@/components/Icons'
 export default {
   name: 'App',
+  data() {
+    return {
+     
+    }
+  },
   components: {
-    Avatar,
+    Icons
+  },
+  computed: {
+    
+  },
+  methods: {
+   
   }
 }
 </script>
