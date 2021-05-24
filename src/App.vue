@@ -2,11 +2,14 @@
   <div id="app">
     <icons type="home"></icons>
     <icons type="arrowDown"></icons>
+    <avatar url="https://avatars.githubusercontent.com/u/36915498?v=4"></avatar>
+    <avatar url="https://avatars.githubusercontent.com/u/36915498?v=4" :size="50"></avatar>
   </div>
 </template>
 
 <script>
 import Icons from '@/components/Icons'
+import Avatar from '@/components/Avatar'
 export default {
   name: 'App',
   data() {
@@ -15,7 +18,8 @@ export default {
     }
   },
   components: {
-    Icons
+    Icons,
+    Avatar
   },
   computed: {
     
