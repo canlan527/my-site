@@ -1,9 +1,7 @@
 <template>
   <div class="empty-container">
-    <div class="empty-content">
-      <icons type="empty" class="icon"></icons>
+      <icons type="empty"></icons>
       <p>{{ text }}</p>
-    </div>
   </div>
 </template>
 
@@ -24,29 +22,15 @@ import Icons from "@/components/Icons"
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var";
+@import "~@/styles/mixin.less";
+@import "~@/styles/var.less";
 
 .empty-container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .empty-content {
-    width: 100%;
-    height: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    .icon {
-      font-size: 100px;
-      color: @lightWords;
-    }
-    p {
-      color: @lightWords;
-      font-size: 26px;
-    }
-  }
+  .self-center();
+  color:@gray;
+  text-align: center;
+}
+.icon-container {
+  font-size: 72px;
 }
 </style>
