@@ -1,7 +1,7 @@
 <template>
   <div class="image-loader-container">
-    <img :src="src" :style="imageStyle" class="img-real" ref="imageRef" />
-    <img :src="placeholder" :style="miniStyle" class="img-fake" />
+    <img v-if="!allDone" :src="placeholder"  class="placeholder-image">
+    <img :src="src" @load="handleLoaded" :style="imageStyle">
   </div>
 </template>
 
@@ -11,11 +11,11 @@
     props: {
       src: {
         type: String,
-        default: ''
+        required: true
       },
       placeholder: {
         type: String,
-        default: ''
+        required: true
       },
       duration: {
         type: Number,
@@ -24,65 +24,47 @@
     },
     data() {
       return {
-        flag: false
+        flag: false,
+        allDone: false,
       }
-    },
-    mounted() {
-      this.loadImage()
     },
     computed: {
       imageStyle() {
-        const opacity = this.flag ? 'opacity: 0' : 'opacity: 1'
-        return {
-          opacity,
-          transition: `all 1s`
+        let opacity = 0
+        if(this.flag) {
+          opacity = 1;
         }
-      },
-      miniStyle() {
-        const opacity = this.flag ? 'opacity: 1' : 'opacity: 0'
         return {
           opacity,
+          transition: `${this.duration}ms`
         }
       }
     },
     methods: {
-      loadImage() {
-        const img = this.$refs.imageRef
-        this.flag = false
-        img.onreadystatechange = function() {
-           if(img.readyState=="complete"||img.readyState=="loaded"){
-                this.flag = true
-                this.$emit('load')
-            }
-        }
-      },
-
+      handleLoaded() {
+        this.flag = true
+        setTimeout(() => {
+          this.allDone = true
+          this.$emit('load')
+        },this.duration)
+      }
     }
   }
 </script>
 
 <style lang="less" scoped>
+@import '~@/styles/mixin.less';
+
 .image-loader-container {
-  width: 700px;
-  height: 460px;
+  width: 100%; 
+  height: 100%;
   position: relative;
-  img{
-    width:100%;
-    height:100%;
-    display: block;
+  overflow: hidden;
+  img {
+    .self-fill();
   }
-  .img-real {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-  }
-  .img-fake {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    filter: blur(2px);
+  .placeholder-image {
+    filter: blur(2vw);
   }
 }
 </style>
