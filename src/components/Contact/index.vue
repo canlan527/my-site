@@ -37,7 +37,7 @@ import Icons from "@/components/Icons"
 import weixinPic from "@/assets/images/weixin.jpg"
 
   export default {
-    name: "Concat",
+    name: "Contact",
     components: {
       Icons,
     },

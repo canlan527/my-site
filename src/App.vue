@@ -1,34 +1,37 @@
 <template>
   <div id="app">
-     <concat :github="github" :email="email" :qq="qq" :weixin="weixin"></concat>
+    <site-aside></site-aside>
   </div>
 </template>
 
 <script>
-import Concat from '@/components/Concat'
+import SiteAside from '@/components/SiteAside'
+
 export default {
   name: 'App',
   data() {
     return {
-      github: 'canlan527',
-      email: 'canlan527@gmail.com',
-      qq: '1481086138',
-      weixin: '是个废物'
+
     }
   },
   mounted() {
   },
   components: {
-    Concat,
+    SiteAside,
   },
 }
 </script>
 
 <style lang="less">
 #app {
-  width: 300px;
-  background-color:#333;
-  height: 400px;
-  padding-top:200px;
+  width: 100vw;
+  height: 100%;
+  .site-aside-container {
+    width: 260px;
+    height: 100vh;
+    background: #333;
+  }
+  
+
 }
 </style>
