@@ -15,8 +15,8 @@
 
 <script>
 import Avatar from "@/components/Avatar";
-import Contact from "@/components/Contact";
-import SliderMenu from "@/components/SliderMenu/menu";
+import Contact from "./Contact";
+import SliderMenu from "./SliderMenu/menu";
 import pic from "@/assets/images/3.jpg";
 export default {
   name: "SiteAside",

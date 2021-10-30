@@ -1,7 +1,7 @@
 <template>
   <ul class="slider-menu-container">
     <li v-for="item in menu" :key="item.type">
-      <a :href="item.path">
+      <a :href="item.path" :class="{selected: isSelected(item)}">
         <icons :type="item.type"></icons>
         <span>{{item.text}}</span>
       </a>
@@ -30,7 +30,8 @@ export default {
         {
           type: 'blog',
           text: '文章',
-          path: '/blog'
+          path: '/blog',
+          startWith: true,
         },
         {
           type: 'about',
@@ -49,6 +50,17 @@ export default {
         },
       ]
     }
+  },
+  methods: {
+    isSelected(item) {
+      let path = item.path.toLowerCase();  // 菜单的链接地址
+      let curPathname = location.pathname.toLowerCase(); // 当前浏览器访问的地址
+      if(item.startWith) {
+        return curPathname.startsWith(path)
+      }else {
+        return curPathname === path
+      }
+    }
   }
 }
 </script>
@@ -64,11 +76,24 @@ export default {
     height: 40px;
     color: @gray;
     line-height: 40px;
-    &:hover {
-      cursor: pointer;
-      color: #fff;
-      background: rgba(255,255,255,0.3)
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 40px;
+      color: @gray;
+      
+      &.selected{
+        cursor: pointer;
+        color: #fff;
+        background: rgba(255,255,255,0.3)
+      }
+      &:hover {
+        cursor: pointer;
+        color: #fff;
+        background: rgba(255,255,255,0.1)
+      }
     }
+    
   }
   .icon-container {
     margin: 0 20px;
