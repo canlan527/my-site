@@ -1,6 +1,7 @@
 <template>
   <div class="site-aside-container">
     <avatar :url="pic" :size="140"></avatar>
+    <h1>废物的小窝</h1>
     <div class="site-bottom">
       <slider-menu></slider-menu>
       <contact
@@ -41,7 +42,10 @@ export default {
 .site-aside-container {
   width: 100%;
   height: 100%;
-
+  h1 {
+    color: #fff;
+    text-align: center;
+  }
   .avatar-container {
     padding: 20px 0;
     margin: 0 auto;
