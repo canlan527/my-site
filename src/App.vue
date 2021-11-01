@@ -6,7 +6,9 @@
           <site-aside></site-aside>
         </div>
       </template>
-      <div class="main"></div>
+      <div class="main">
+        <router-view></router-view>
+      </div>
     </Layout>
 
   </div>
