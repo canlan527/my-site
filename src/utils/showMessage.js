@@ -26,9 +26,12 @@ export default function(options = {}) {
   div.className = `${styles.message} ${typeClassName}`;
 
   // 将div加到容器中
-  if(getComputedStyle(container).position === 'static') {
-    container.style.position = 'relative'
-  } 
+  if(options.container) {
+    if(getComputedStyle(container).position === 'static') {
+      container.style.position = 'relative'
+    } 
+  }
+
   container.appendChild(div)
 
   // 浏览器强行渲染 导致reflow

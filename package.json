@@ -12,7 +12,9 @@
     "test:ImageLoader": "vue serve src/components/ImageLoader/test.vue"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "mockjs": "^1.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.5.3"
   },
