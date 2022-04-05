@@ -1,5 +1,5 @@
 import request from './request'
 
-async function getNews() {
+export async function getBanners() {
  return await request.get('/api/banner')
 }

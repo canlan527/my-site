@@ -43,5 +43,9 @@ export default {
     height:100%;
     background-color: #333;
   }
+  .main {
+    width:100%;
+    height:100%;
+  }
 }
 </style>
