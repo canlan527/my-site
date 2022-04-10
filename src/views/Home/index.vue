@@ -100,6 +100,13 @@ export default {
   height: 100%;
   position: relative;
   overflow: hidden;
+
+  // width: 400px;
+  // height: 300px;
+  // overflow: visible;
+  // border: 2px solid tan;
+  // margin: 100px auto;
+
 }
 .carousel-container {
   width: 100%;
