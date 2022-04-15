@@ -2,27 +2,29 @@
   <div class="home-container" ref="homeContainerRef"
     @wheel="handleWheel"
     @transitionend="handleTransitionEnd"
+    v-loading="isLoading"
   >
     <ul class="carousel-container" ref="carousel" :style="marginTop">
-      <li v-for="item in banners" :key="item.id">
+      <li v-for="item in data" :key="item.id">
         <CarouselItem :carousel="item"></CarouselItem>
       </li>
     </ul>
     <div class="icon icon-up" v-show="index > 0" @click="switchTo(index - 1)">
       <Icon type="arrowUp"></Icon>
     </div>
-    <div class="icon icon-down" v-show="index < this.banners.length - 1"
+    <div class="icon icon-down" v-show="index < this.data.length - 1"
       @click="switchTo(index + 1)" >
       <Icon type="arrowDown"></Icon>
     </div>
     <ul class="indicator">
       <li
         :class="{ active: i === index }"
-        v-for="(item, i) in banners"
+        v-for="(item, i) in data"
         :key="item.id"
         @click="switchTo(i)"
       ></li>
     </ul>
+    <!-- <loading v-if="isLoading"></loading> -->
   </div>
 </template>
 
@@ -30,19 +32,25 @@
 import { getBanners } from "@/api/banner";
 import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icons";
+import fetchData from '@/mixins/fetchData.js';
+
+// import Loading from '@/components/Loading/'
 export default {
   name: "Home",
+  mixins: [fetchData([])],
   data() {
     return {
-      banners: [],
+      // banners: [],
       index: 0,
       containerHeight: 0,
       switching: false, // 是否正在滚动banner
+      // isLoading: true
     };
   },
   components: {
     CarouselItem,
     Icon,
+    // Loading,
   },
   computed: {
     marginTop() {
@@ -51,9 +59,10 @@ export default {
       };
     },
   },
-  async created() {
-    this.banners = await getBanners();
-  },
+  // async created() {
+  //   this.banners = await getBanners();
+  //   this.isLoading = false;
+  // },
   mounted() {
     this.containerHeight = this.$refs.carousel.clientHeight;
     window.addEventListener("resize", this.handleResize, false);
@@ -66,6 +75,9 @@ export default {
     switchTo(i) {
       this.index = i;
     },
+    async fetchData(){
+      return await getBanners();
+    },
     // 鼠标滚轮事件
     handleWheel(e) {
       if (!this.switching && e.deltaY < -15 && this.index > 0) {
@@ -73,7 +85,7 @@ export default {
         console.log("向上滚动");
         this.switching = true;
         this.index--;
-      } else if (!this.switching && e.deltaY > 15 && this.index < this.banners.length - 1 ) {
+      } else if (!this.switching && e.deltaY > 15 && this.index < this.data.length - 1 ) {
         // 向下滚动
         console.log("向下滚动");
         this.switching = true;
