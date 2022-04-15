@@ -10,7 +10,8 @@
     "test:Icons": "vue serve src/components/Icons/test.vue",
     "test:Empty": "vue serve src/components/Empty/test.vue",
     "test:ImageLoader": "vue serve src/components/ImageLoader/test.vue",
-    "test:Loading": "vue serve src/components/Loading/test.vue"
+    "test:Loading": "vue serve src/components/Loading/test.vue",
+    "test:ListLevel": "vue serve src/views/Blog/components/ListLevel-test.vue"
   },
   "dependencies": {
     "axios": "^0.24.0",
