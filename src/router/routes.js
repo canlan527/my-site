@@ -10,6 +10,7 @@ const routes = [
   { name: 'Project', path: '/project', component: Project}, 
   { name: 'Message', path: '/message', component: Message}, 
   { name: 'Blog', path: '/blog', component: Blog}, 
+  { name: 'cateBlog', path: '/blog/cate/:cateId', component: Blog}, 
 ]
 
 export default routes

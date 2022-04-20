@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import router from './router'
-import './mock'
+// import './mock'
 import App from './App.vue'
+import './mock'
 import './styles/global.less'
 
 import showMessage from './utils/showMessage'
