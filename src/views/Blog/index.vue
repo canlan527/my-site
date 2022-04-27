@@ -51,9 +51,6 @@ export default {
   height: 100%;
   overflow-y: auto;
 }
-.blog-list {
-  overflow-y: auto;
-}
 .blog-bg-img {
   float: left;
   width: 100%;

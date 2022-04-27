@@ -17,7 +17,14 @@ export default {
       return await getBlogType()
     },
     handleSelect(e) {
-      console.log(e)
+      
+      // console.log(e)
+      // this.data.forEach(item => {
+      //   if(item.id === e.id) {
+      //     console.log(item)
+      //     item.isActive =  true;
+      //   } 
+      // })
     }
   }
 };
@@ -32,7 +39,7 @@ export default {
   text-align: center;
   /deep/.list-level-container .list-level-item {
     cursor: pointer;
-    color: #ccc;
+    color: rgb(255, 255, 255);
     font-size: 14px;
   }
 }

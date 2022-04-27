@@ -2,7 +2,7 @@
   <div class="bloglist-container" v-loading="isLoading">
     <div class="blog-bigImg" :style="bigImgStyle"></div>
     <ul class="blog-ul">
-      <li class="blog-list-item" v-for="item in data.rows" :key="item.id">
+      <li class="blog-list-item" v-for="item in data.rows" :key="item.id" >
         <div class="blog-top">
           <div class="content">
             <a href="" class="title">{{item.title}}</a>
@@ -10,7 +10,7 @@
               {{ item.description }}
             </p>
           </div>
-          <a href="" class="blog-item-img">
+          <a href="" class="blog-item-img" v-if="typeof item.thumb==='string' ">
             <img :src="item.thumb" alt="" />
           </a>
         </div>
@@ -24,7 +24,7 @@
       </li>
     </ul>
     <!-- 分页组件 -->
-    <pager :current="1" :total="data.total" :limit="limit"
+    <pager :current="current" :total="data.total" :limit="limit"
      :visibleNum="12" 
      @pageChange="handlePageChange"></pager>
   </div>
@@ -37,7 +37,7 @@ import Pager from '@/components/Pager';
 import fetchData from '@/mixins/fetchData';
 import blogBigImg from '@/assets/images/th.png';
 export default {
-  mixins: [fetchData([])],
+  mixins: [fetchData({})],
   data() {
     return {
       pic,
@@ -87,6 +87,10 @@ export default {
     border-radius:20px;
     min-width: 560px;
   }
+  .blog-bigImg:hover {
+    transform: translate(-5px,-5px);
+    transition: 1s;
+  }
   .blog-ul {
     width: 100%;
     padding: 12px;
@@ -107,7 +111,7 @@ export default {
         width: 100%;
         display: flex;
         .content {
-          width: 73%;
+          width: 100%;
           cursor: pointer;
           .title {
             color: @words;
@@ -124,7 +128,7 @@ export default {
           height: 100%;
           border-radius: 20px;
           display: inline-block;
-          margin: 0 12px;
+          margin: 20px 12px 0;
           img {
             width: 180px;
             height: 100px;
@@ -148,6 +152,10 @@ export default {
           color: red;
         }
       }
+    }
+    .blog-list-item:hover {
+      transform: translate(-5px,-5px);
+      transition: 1s;
     }
   }
 }

@@ -85,6 +85,7 @@ export default {
 @import '~@/styles/var.less';
 
 .pager-container {
+  width: 100%;
   display: flex;
   justify-content: center;
   margin: 10px 10px;
@@ -102,7 +103,9 @@ export default {
       cursor: not-allowed;
     }
   }
-
+  // a:hover {
+  //   font-size: 14px;
+  // }
 }
 
 
