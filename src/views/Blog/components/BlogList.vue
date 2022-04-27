@@ -10,7 +10,7 @@
               {{ item.description }}
             </p>
           </div>
-          <a href="" class="blog-item-img" v-if="typeof item.thumb==='string' ">
+          <a href="" class="blog-item-img" v-if="item.thumb">
             <img :src="item.thumb" alt="" />
           </a>
         </div>
