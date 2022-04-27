@@ -5,7 +5,6 @@ import App from './App.vue'
 import './mock'
 
 import './styles/global.less'
-
 import showMessage from './utils/showMessage'
 import vLoading from '@/directives/loading'
 

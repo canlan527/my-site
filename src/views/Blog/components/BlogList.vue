@@ -11,7 +11,7 @@
             </p>
           </div>
           <a href="" class="blog-item-img" v-if="item.thumb">
-            <img :src="item.thumb" alt="" />
+            <img :src="item.thumb" alt="item.title" :title="item.title" />
           </a>
         </div>
 
@@ -19,7 +19,7 @@
           <span class="like">❤️ {{ item.scanNumber}}</span>
           <span class="comment-count">评论：{{item.commentNumber}}</span>
           <span class="blog-cate">分类：{{item.category.name}}</span>
-          <span class="meta-time">时间：{{ item.createDate}}</span>
+          <span class="meta-time">时间：{{ fmtDate(item.createDate) }}</span>
         </div>
       </li>
     </ul>
@@ -36,6 +36,8 @@ import { getBlog } from "@/api/blog";
 import Pager from '@/components/Pager';
 import fetchData from '@/mixins/fetchData';
 import blogBigImg from '@/assets/images/th.png';
+import { fmtDate } from '@/utils'
+
 export default {
   mixins: [fetchData({})],
   data() {
@@ -62,12 +64,13 @@ export default {
     }
   },
   methods: {
+    fmtDate,
     async fetchData() {
       return getBlog(1, 10, 3)
     },
     handlePageChange(newPage) {
       this.current = newPage;
-    }
+    },
   }
 };
 </script>
