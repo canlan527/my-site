@@ -1,5 +1,6 @@
 <template>
-  <div class="bloglist-container">
+  <div class="bloglist-container" v-loading="isLoading">
+    <div class="blog-bigImg" :style="bigImgStyle"></div>
     <ul class="blog-ul">
       <li class="blog-list-item" v-for="item in data.rows" :key="item.id">
         <div class="blog-top">
@@ -22,24 +23,50 @@
         </div>
       </li>
     </ul>
+    <!-- 分页组件 -->
+    <pager :current="1" :total="data.total" :limit="limit"
+     :visibleNum="12" 
+     @pageChange="handlePageChange"></pager>
   </div>
 </template>
 
 <script>
 import pic from "@/assets/images/3.jpg";
 import { getBlog } from "@/api/blog";
+import Pager from '@/components/Pager';
 import fetchData from '@/mixins/fetchData';
-
+import blogBigImg from '@/assets/images/th.png';
 export default {
   mixins: [fetchData([])],
   data() {
     return {
       pic,
+      blogBigImg,
+      current: 1
     };
+  },
+  components: {
+    Pager,
+  },
+  computed: {
+    limit() {
+      if(this.data.rows) {
+        return this.data.toal / this.data.rows.length;
+      }
+      
+    },
+    bigImgStyle() {
+      return {
+        background: `url(${blogBigImg}) center center no-repeat`
+      }
+    }
   },
   methods: {
     async fetchData() {
       return getBlog(1, 10, 3)
+    },
+    handlePageChange(newPage) {
+      this.current = newPage;
     }
   }
 };
@@ -48,29 +75,39 @@ export default {
 <style lang="less" scoped>
 @import "~@/styles/var.less";
 .bloglist-container {
+  max-width: 1024px;
   width: 100%;
-  height: 100%;
+  min-width: 600px;
   box-sizing: border-box;
+  margin: 0 auto;
+  padding: 30px;
+  .blog-bigImg {
+    width: 100%;
+    height: 400px;
+    border-radius:20px;
+    min-width: 560px;
+  }
   .blog-ul {
     width: 100%;
-    height: 100%;
     padding: 12px;
     box-sizing: border-box;
+    min-width: 520px;
     .blog-list-item {
       width: 100%;
+      min-width: 560px;
       min-height: 120px;
+      background:#fff;
       border-bottom: 1px solid #f0f0f0;
-      // display: flex;
-      // flex-direction: column;
-      padding: 15px 2px 20px 0;
+      padding: 15px 20px;
       margin-bottom: 14px;
+      box-shadow: 2px 2px 10px #f0f0f0;
+      border-radius: 14px;
+      box-sizing:border-box;
       .blog-top {
         width: 100%;
-        // height: 80%;
         display: flex;
         .content {
           width: 73%;
-          // height: 100%;
           cursor: pointer;
           .title {
             color: @words;
@@ -89,7 +126,7 @@ export default {
           display: inline-block;
           margin: 0 12px;
           img {
-            width: 100%;
+            width: 180px;
             height: 100px;
             border-radius: 8px;
           }
@@ -98,6 +135,7 @@ export default {
 
       .meta {
         width: 50%;
+        min-width: 350px;
         height: 20%;
         padding:8px;
         color: @gray;
@@ -106,7 +144,6 @@ export default {
         justify-content: space-between;
         font-size:12px;
         cursor: pointer;
-        // margin-bottom: 12px;
         .like {
           color: red;
         }

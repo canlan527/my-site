@@ -29,7 +29,7 @@ export default {
   }
   .main {
     flex: 1 1 auto; // 表示 能增长 可压缩 保持宽度
-    overflow: hidden;
+    overflow:hidden;
   }
 }
 </style>
