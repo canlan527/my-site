@@ -17,7 +17,9 @@ export default {
   },
   methods: {
     handleClick(item) {
-      this.$emit('select', item)
+      if(!item.isActive) {
+        this.$emit('select', item)  
+      }
     }
   }
 }
@@ -35,7 +37,7 @@ export default {
      padding: 6px 0;
    }
    .isActive {
-     color:@warn;
+     color: #fff;
    }
 
  } 

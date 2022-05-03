@@ -44,7 +44,6 @@ export default {
   },
   methods: {
     handleScrollTop() {
-      console.log(1);
       this.$refs.bloglistContainer.scrollTop = 0;
     },
   },
@@ -56,6 +55,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 .blog-bg-img {
   float: left;
