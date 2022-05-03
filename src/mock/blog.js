@@ -16,7 +16,7 @@ Mock.mock('/api/blogtypes', 'get', {
 
 Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function (options) {
   const query = qs.parse(options.url);
-  console.log(query)
+  // console.log(query)
   return Mock.mock({
     code: 0,
     msg: '',
