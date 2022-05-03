@@ -23,7 +23,7 @@ export default {
     },
     list() {
       const totleNumber = this.data.reduce(
-        (a, b) => a.articleCount + b.articleCount,
+        (a, b) => a + b.articleCount,
         0
       );
       const result = [
@@ -40,6 +40,7 @@ export default {
         return {
           ...it,
           isActive: it.id === this.cateId,
+          aside: `${it.articleCount}篇`
         };
       });
     },
@@ -49,6 +50,7 @@ export default {
       return await getBlogType();
     },
     handleSelect(e) {
+      console.log(e)
       const query = {
         page: 1,
         limit: 10,
@@ -60,19 +62,11 @@ export default {
           params: { cateId: e.id },
         });
       } else {
-        console.log('blog')
         this.$router.push({
           name: "Blog",
           query,
         });
       }
-
-      // this.data.forEach(item => {
-      //   if(item.id === e.id) {
-      //     console.log(item)
-      //     item.isActive =  true;
-      //   }
-      // })
     },
   },
 };
