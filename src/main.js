@@ -18,13 +18,3 @@ new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
-
-// import * as blog from './api/blog';
-
-// blog.getBlogType().then(res => {
-//   console.log(res)
-// })
-
-// blog.getBlog(2, 20,3).then(res => {
-//   console.log(res)
-// })

@@ -2,15 +2,15 @@
   <div class="bloglist-container" v-loading="isLoading">
     <div class="blog-bigImg" :style="bigImgStyle"></div>
     <ul class="blog-ul">
-      <li class="blog-list-item" v-for="item in data.rows" :key="item.id">
+      <li class="blog-list-item" v-for="item in data.rows" :key="item.id" @click="goToBlogDetail(item)">
         <div class="blog-top">
-          <div class="content">
-            <a href="" class="title">{{ item.title }}</a>
+          <div class="content" >
+            <a class="title" >{{ item.title }}</a>
             <p class="abstract">
               {{ item.description }}
             </p>
           </div>
-          <a href="" class="blog-item-img" v-if="item.thumb">
+          <a class="blog-item-img" v-if="item.thumb">
             <img :src="item.thumb" alt="item.title" :title="item.title" />
           </a>
         </div>
@@ -18,7 +18,7 @@
         <div class="meta">
           <span class="like">❤️ {{ item.scanNumber }}</span>
           <span class="comment-count">评论：{{ item.commentNumber }}</span>
-          <span class="blog-cate">分类：{{ item.category.name }}</span>
+          <span class="blog-cate" @click.stop="gotoCate(item)">分类：{{ item.category.name }}</span>
           <span class="meta-time">时间：{{ fmtDate(item.createDate) }}</span>
         </div>
       </li>
@@ -36,7 +36,7 @@
 
 <script>
 import pic from "@/assets/images/3.jpg";
-import { getBlog } from "@/api/blog";
+import { getBlogList } from "@/api/blog";
 import Pager from "@/components/Pager";
 import fetchData from "@/mixins/fetchData";
 import blogBigImg from "@/assets/images/th.png";
@@ -84,7 +84,7 @@ export default {
   methods: {
     fmtDate,
     async fetchData() {
-      return getBlog({
+      return getBlogList({
         page: this.routeInfo.page,
         limit: this.routeInfo.limit,
         cateId: this.routeInfo.cateId,
@@ -113,6 +113,21 @@ export default {
         });
       }
     },
+    // 跳转对应的文章分类路由
+    gotoCate(item) {
+      console.log(item)
+      this.$router.push({
+        name: 'cateBlog',
+        params: { cateId: item.category.id },
+      })
+    },
+    // 跳转到博客详情
+    goToBlogDetail(item) {
+      this.$router.push({
+        name: 'blogDetail',
+        params: { id: item.id }
+      })
+    }
   },
 };
 </script>

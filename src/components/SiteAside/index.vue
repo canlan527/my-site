@@ -1,7 +1,7 @@
 <template>
   <div class="site-aside-container">
     <avatar :url="pic" :size="140"></avatar>
-    <h1>废物の小窝</h1>
+    <h1>对长亭晚の小窝</h1>
     <div class="site-bottom">
       <slider-menu></slider-menu>
       <contact
@@ -32,7 +32,7 @@ export default {
       github: "canlan527",
       email: "canlan527@gmail.com",
       qq: "1481086138",
-      weixin: "是个废物",
+      weixin: "梧桐细雨",
     };
   },
 };
