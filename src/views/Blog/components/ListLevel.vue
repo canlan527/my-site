@@ -40,7 +40,6 @@ export default {
 .list-level-container {
   list-style: none;
   padding: 0;
-  font-size: 20px;
   .list-level-container {
     margin-left: 1em;
     padding: 6px 0;
