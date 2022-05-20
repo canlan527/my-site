@@ -3,7 +3,7 @@
     <h1>{{blog.title}}</h1>
     <div class="blog-side-info">
       <span>浏览：{{blog.scanNumber}}</span>
-      <a>评论：{{blog.commentNumber}}</a>
+      <a href="#data-form">评论：{{blog.commentNumber}}</a>
       <span>{{ fmtDate(blog.createDate) }}</span>
       <a v-if="blog.category">{{blog.category.name}}</a>
     </div>
@@ -39,6 +39,9 @@ export default {
     color: @gray;
     span, a {
       margin-right: 16px;
+    }
+    a{
+      cursor: pointer;
     }
   }
   .content {

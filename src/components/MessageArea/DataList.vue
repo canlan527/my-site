@@ -2,10 +2,13 @@
   <ul class="data-list-container">
     <li class="data-list-item" v-for="item in list" :key="item.id">
       <div class="avatar">
-        <img :src="item.avatar" class="img">
+        <avatar :url="item.avatar" :size="60"></avatar>
       </div>
       <div class="info">
-        <div class="nickname">{{item.nickname}}</div>
+        <div class="info-top">
+          <span class="nickname">{{item.nickname}}</span>
+          <span class="time">{{fmtDate(item.createDate)}}</span>
+        </div>
         <div class="content">{{item.content}}</div>
       </div>
     </li>
@@ -13,12 +16,18 @@
 </template>
 
 <script>
+import Avatar from '@/components/Avatar'
+import { fmtDate } from '@/utils'
+
 export default {
   props: {
     list: {
       type: Array,
       default: () => [],
     }
+  },
+  components: {
+    Avatar,
   },
   watch: {
     list: {
@@ -27,6 +36,9 @@ export default {
       },
       deep: true,
     }
+  },
+  methods: {
+    fmtDate,
   }
 }
 </script>
@@ -62,9 +74,16 @@ export default {
     .info {
       flex: 1;
       font-size: 14px;
-      .nickname {
+      .info-top {
         margin-bottom: 10px;
-        color: lighten(@words, 5%)
+        color: darken(@success, 15%);
+        display:flex;
+        justify-content: space-between;
+        align-items:center;
+        .time {
+          display: inline-block;
+          color: @gray;
+        }
       }
       .content {
         color: lighten(@words, 5%)

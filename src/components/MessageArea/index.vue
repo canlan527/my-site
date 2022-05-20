@@ -1,18 +1,19 @@
 <template>
   <div class="message-area-container">
-    <data-form></data-form>
+    <data-form v-on="$listeners"></data-form>
     <h3>
       {{title}}
-
       <span>({{subTitle}})</span>
     </h3>
     <data-list :list="list"></data-list>
+    <div class="loading" v-loading="isListLoading"></div>
   </div>
 </template>
 
 <script>
 import DataForm from './DataForm.vue'
 import DataList from './DataList.vue'
+
 export default {
   props: {
     title: {
@@ -40,11 +41,13 @@ export default {
       console.log(val)
     }
   },
+  methods: {
+  },
   components: { DataForm, DataList },
 
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 
 </style>

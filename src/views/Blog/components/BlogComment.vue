@@ -1,32 +1,32 @@
 <template>
-  <div class="blog-comment-container">
-    <message-area :title="title" :subTitle="total" :list="list"></message-area>
+  <div class="blog-comment-container" >
+    <h2 id="data-form">发表评论</h2>
+    <message-area @submit="handleSubmit" :title="title" :subTitle="data.total" :list="data.rows" :isListLoading="isLoading"></message-area>
   </div>
 </template>
 
 <script>
+import fetchData from '@/mixins/fetchData'
+import { getCommentlist, addComment } from '@/api/blog'
 import MessageArea from '@/components/MessageArea'
+
 export default {
-  props: {
-    total: {
-      type: Number,
-    },
-    list: {
-      type: Array,
-      default: () => [],
-    }
-  },
+  mixins: [fetchData({rows:[], total: 0})],
   data() {
     return {
       title: '评论列表', 
+      isLoading: false,
     }
   },
-  created(){
-    console.log(this.list)
-  },
-  watch: {
-    list (val) {
-      console.log(val)
+  methods: {
+    async fetchData() {
+      return await getCommentlist(this.$route.params.id)
+    },
+    async handleSubmit(formData, callback) {
+      const resp = await addComment({blogId: this.$route.params.id, ...formData}) 
+      this.data.rows.unshift(resp)
+      this.data.total ++;
+      callback('评论成功')
     }
   },
   components: { 
@@ -35,6 +35,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 
 </style>
