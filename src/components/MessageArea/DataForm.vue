@@ -7,7 +7,7 @@
       </div>
       <div class="error">{{error.nickname}}</div>
       <div class="content-box">
-        <textarea  class="textarea" maxlength="3000" placeholder="请输入评论" v-model="formData.content"></textarea>
+        <textarea  class="textarea" maxlength="300" placeholder="请输入评论" v-model="formData.content"></textarea>
         <span  class="tips">{{formData.content.length}} / 300</span>
       </div>
       <div class="error">{{error.content}}</div>

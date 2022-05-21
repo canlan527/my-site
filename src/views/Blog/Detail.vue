@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div class="main-container" v-loading="isLoading">
+    <div class="main-container" ref="mainContainer" v-loading="isLoading">
       <blog-detail :blog="data" v-if="data"></blog-detail>
       <blog-comment v-if="!isLoading"></blog-comment>
     </div>
@@ -33,10 +33,28 @@ export default {
     BlogToc,
     BlogComment,
   },
+  mounted() {
+    this.$refs.mainContainer.addEventListener('scroll', this.handleScroll)
+  },
+  // 在组件加载完数据，刷新后让锚点自动跳转到对应位置
+  updated() {
+    const hash = location.hash
+    location.hash = '';
+    setTimeout(() => {
+      location.hash = hash;
+    }, 50);
+  },
+  destroyed() {
+    this.$refs.mainContainer && this.$refs.mainContainer.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
     async fetchData() {
       return await getBlog(this.$route.params.id)
     },
+    handleScroll() {
+      // 在滚动的过程中不断派发 mainScroll 事件，让订阅的一边处理， 数据 this.$refs.mainContainer 并没有用到，这是暂时传递，看看以后是否会用到。
+      this.$bus.$emit('mainScroll', this.$refs.mainContainer)
+    }
   }
 }
 </script>

@@ -7,7 +7,7 @@ import './mock'
 import './styles/global.less'
 import showMessage from './utils/showMessage'
 import vLoading from '@/directives/loading'
-
+import './eventBus'
 Vue.prototype.$showMessage = showMessage
 Vue.config.productionTip = false
 
@@ -18,3 +18,4 @@ new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
+

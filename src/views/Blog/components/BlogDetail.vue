@@ -5,7 +5,7 @@
       <span>浏览：{{blog.scanNumber}}</span>
       <a href="#data-form">评论：{{blog.commentNumber}}</a>
       <span>{{ fmtDate(blog.createDate) }}</span>
-      <a v-if="blog.category">{{blog.category.name}}</a>
+      <a v-if="blog.category" @click="goCategory(blog.category)">{{blog.category.name}}</a>
     </div>
     <div class="content markdown-body" v-html="blog.htmlContent"></div>
   </div>
@@ -25,6 +25,12 @@ export default {
   },
   methods: {
     fmtDate,
+    goCategory(blog) {
+      this.$router.push({
+        name: 'cateBlog', 
+        params: { cateId: blog.id}
+      })
+    }
   }
 }
 </script>
