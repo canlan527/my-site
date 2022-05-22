@@ -22,7 +22,7 @@ import { getBlog } from '@/api/blog'
 import BlogComment from './components/BlogComment.vue'
 
 export default {
-  mixins: [fetchData({}),scrollToTop()],
+  mixins: [fetchData({}),scrollToTop('mainContainer')],
   data() {
     return {
       blogId: -1, 
@@ -34,12 +34,6 @@ export default {
     BlogToc,
     BlogComment,
   },
-  // created() {
-  //   this.$bus.$on('setMainScroll', this.handleSetMainScroll)
-  // },
-  // mounted() {
-  //   this.$refs.mainContainer.addEventListener('scroll', this.handleScroll)
-  // },
   // 在组件加载完数据，刷新后让锚点自动跳转到对应位置
   updated() {
     const hash = location.hash
@@ -48,23 +42,11 @@ export default {
       location.hash = hash;
     }, 50);
   },
-  // beforeDestroy() {
-  //   this.$bus.$emit('mainScroll');
-  //   this.$refs.mainContainer.removeEventListener('scroll', this.handleScroll);
-  //   this.$bus.$off('setMainScroll');
-  // },
+
   methods: {
     async fetchData() {
       return await getBlog(this.$route.params.id)
     },
-    // handleScroll() {
-    //   // 在滚动的过程中不断派发 mainScroll 事件，让订阅的一边处理， 数据 this.$refs.mainContainer 并没有用到，这是暂时传递，看看以后是否会用到。
-    //   this.$bus.$emit('mainScroll', this.$refs.mainContainer)
-    // },
-    // // 设置滚动条滚动的高度值
-    // handleSetMainScroll(top) {
-    //   this.$refs.mainContainer.scrollTop = top
-    // }
   }
 }
 </script>

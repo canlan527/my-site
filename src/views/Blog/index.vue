@@ -18,7 +18,7 @@ import blogBigImg from "@/assets/images/th.png";
 import scrollToTop from '@/mixins/scrollToTop'
 
 export default {
-  mixins: [scrollToTop()],
+  mixins: [scrollToTop('mainContainer')],
   data() {
     return {
       blogBigImg,

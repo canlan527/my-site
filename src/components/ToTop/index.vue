@@ -47,5 +47,9 @@ export default {
   right:50px;
   z-index: 100;
   cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, .1);
+    box-shadow: 2px 2px 16px rgba(255, 255, 255, .4);
+  }
 }
 </style>
