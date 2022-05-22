@@ -10,13 +10,14 @@
         <router-view></router-view>
       </div>
     </Layout>
-
+    <to-top></to-top>
   </div>
 </template>
 
 <script>
 import Layout from '@/components/Layout'
 import SiteAside from '@/components/SiteAside'
+import ToTop from '@/components/ToTop'
 
 export default {
   name: 'App',
@@ -30,7 +31,9 @@ export default {
   components: {
     SiteAside,
     Layout,
+    ToTop,
   },
+  
 }
 </script>
 

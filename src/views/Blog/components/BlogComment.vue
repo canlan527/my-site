@@ -24,6 +24,9 @@ export default {
   created() {
     this.$bus.$on('mainScroll', this.handleScroll)
   },
+  destroyed() {
+    this.$bus.$off('mainScroll', this.handleScroll)
+  },
   computed: {
     // 是否有更多数据
     hasMore() {
@@ -54,7 +57,7 @@ export default {
       callback('评论成功')
     },
     handleScroll(dom) {
-      if(this.isLoading) {
+      if(this.isLoading || !dom) {
         return;
       }
      const ds = 100; // 设置底部范围值

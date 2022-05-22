@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div class="blog-list-container" ref="bloglistContainer">
+    <div class="blog-list-container" ref="mainContainer">
       <blog-list class="blog-list" @scrollTop="handleScrollTop"></blog-list>
     </div>
     <div class="blog-bg-img" :style="blogListStyle"></div>
@@ -15,8 +15,10 @@ import Layout from "@/components/Layout";
 import BlogCategory from "./components/BlogCategory.vue";
 import BlogList from "./components/BlogList.vue";
 import blogBigImg from "@/assets/images/th.png";
+import scrollToTop from '@/mixins/scrollToTop'
 
 export default {
+  mixins: [scrollToTop()],
   data() {
     return {
       blogBigImg,
@@ -44,7 +46,7 @@ export default {
   },
   methods: {
     handleScrollTop() {
-      this.$refs.bloglistContainer.scrollTop = 0;
+      this.$refs.mainContainer.scrollTop = 0;
     },
   },
 };
