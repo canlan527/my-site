@@ -29,14 +29,14 @@ export default {
   components: {
     Avatar,
   },
-  watch: {
-    list: {
-      handler(val) {
-        console.log(val)
-      },
-      deep: true,
-    }
-  },
+  // watch: {
+  //   list: {
+  //     handler(val) {
+  //       // console.log(val)
+  //     },
+  //     deep: true,
+  //   }
+  // },
   methods: {
     fmtDate,
   }
