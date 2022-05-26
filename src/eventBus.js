@@ -34,6 +34,8 @@
  * - 滚动高度
  */
 import Vue from 'vue';
+const app = new Vue({});
+Vue.prototype.$bus = app; // 为了让别的组件很方便使用bus
 
-Vue.prototype.$bus = new Vue({});
+export default app; // 为了让别的js模块文件使用bus
 

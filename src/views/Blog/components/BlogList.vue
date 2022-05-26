@@ -11,7 +11,7 @@
             </p>
           </div>
           <a class="blog-item-img" v-if="item.thumb">
-            <img :src="item.thumb" alt="item.title" :title="item.title" />
+            <img v-lazy="item.thumb" alt="item.title" :title="item.title" />
           </a>
         </div>
 
