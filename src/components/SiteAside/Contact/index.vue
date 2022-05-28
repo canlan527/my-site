@@ -2,29 +2,33 @@
   <div class="concat-container">
     <ul>
       <li>
-        <a href="https://github.com/">
+        <a target="_blank" :href="data.github">
           <icons type="github"></icons>
-          <span>{{ github }}</span>
+          <span>{{ data.githubName }}</span>
         </a>
       </li>
       <li>
         <a>
           <icons type="mail"></icons>
-          <span>{{ email }}</span>
+          <span>{{ data.mail }}</span>
         </a>
       </li>
       <li>
-        <a href="tencent://message/?Menu=yes&uin=1481086136&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45">
+        <a
+          :href="
+            `tencent://message/?Menu=yes&uin=${data.qq}&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45`
+          "
+        >
           <icons type="qq"></icons>
-          <span>{{ qq }}</span>
+          <span>{{ data.qq }}</span>
         </a>
       </li>
       <li>
         <a>
           <icons type="weixin"></icons>
-          <span>{{ weixin }}</span>
+          <span>{{ data.weixin }}</span>
           <div class="img">
-            <img :src="weixinPic" alt="">
+            <img :src="data.weixinQrCode" alt="" />
           </div>
         </a>
       </li>
@@ -33,38 +37,15 @@
 </template>
 
 <script>
-import Icons from "@/components/Icons"
-import weixinPic from "@/assets/images/weixin.jpg"
-
-  export default {
-    name: "Contact",
-    components: {
-      Icons,
-    },
-    props: {
-      github: {
-        type: String,
-        required: true,
-      },
-      email: {
-        type: String,
-        required: true,
-      },
-      qq: {
-        type: String,
-        required: true,
-      },
-      weixin: {
-        type: String,
-        required: true,
-      },
-    },
-    data() {
-      return {
-        weixinPic:weixinPic
-      }
-    }
-  }
+import Icons from "@/components/Icons";
+import { mapState } from "vuex";
+export default {
+  name: "Contact",
+  components: {
+    Icons,
+  },
+  computed: mapState("setting", ["data"]),
+};
 </script>
 
 <style lang="less" scoped>
@@ -89,17 +70,17 @@ import weixinPic from "@/assets/images/weixin.jpg"
     }
     &:hover .img {
       transform: scaleY(1);
-      transition:.3s;
+      transition: 0.3s;
     }
     margin-bottom: 22px;
     .img {
-      width:150px;
+      width: 150px;
       height: 150px;
-      padding:20px;
+      padding: 20px;
       background-color: #fff;
       position: absolute;
-      top:-200px;
-      bottom:22px;
+      top: -200px;
+      bottom: 22px;
       transform: scaleY(0);
       transform-origin: center bottom;
       border-radius: 4px;
@@ -111,10 +92,10 @@ import weixinPic from "@/assets/images/weixin.jpg"
         position: absolute;
         left: 50%;
         transform: translateX(-50%) rotate(45deg);
-        bottom:-4px;
+        bottom: -4px;
       }
       img {
-        width:150px;
+        width: 150px;
         height: 150px;
       }
     }

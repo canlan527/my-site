@@ -1,15 +1,12 @@
 <template>
   <div class="site-aside-container">
-    <avatar :url="pic" :size="140"></avatar>
-    <h1>对长亭晚の小窝</h1>
+    <template v-if="data">
+      <avatar :url="data.avatar" :size="140"></avatar>
+      <h1>{{data.siteTitle}}</h1>
+    </template>
     <div class="site-bottom">
       <slider-menu></slider-menu>
-      <contact
-        :github="github"
-        :email="email"
-        :qq="qq"
-        :weixin="weixin"
-      ></contact>
+      <contact v-if="data"></contact>
     </div>
   </div>
 </template>
@@ -18,7 +15,8 @@
 import Avatar from "@/components/Avatar";
 import Contact from "./Contact";
 import SliderMenu from "./SliderMenu/menu";
-import pic from "@/assets/images/3.jpg";
+import { mapState } from "vuex";
+
 export default {
   name: "SiteAside",
   components: {
@@ -26,15 +24,7 @@ export default {
     Contact,
     SliderMenu,
   },
-  data() {
-    return {
-      pic,
-      github: "canlan527",
-      email: "canlan527@gmail.com",
-      qq: "1481086138",
-      weixin: "梧桐细雨",
-    };
-  },
+  computed: mapState("setting", ["data"]),
 };
 </script>
 

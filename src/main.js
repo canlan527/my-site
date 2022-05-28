@@ -13,6 +13,8 @@ import vLazy from '@/directives/lazy'
 
 import './eventBus'
 
+store.dispatch('setting/fetchSetting')
+
 Vue.prototype.$showMessage = showMessage
 
 Vue.config.productionTip = false

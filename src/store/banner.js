@@ -16,6 +16,9 @@ export default {
   },
   actions:{
     async fetchData(ctx, payload) {
+      if(ctx.state.data.length) {
+        return;
+      }
       ctx.commit('setLoading', true);
       const res = await getBanners()
       ctx.commit('setData', res);
