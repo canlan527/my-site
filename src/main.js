@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import router from './router'
+import store from './store'
 // import './mock'
 import App from './App.vue'
 import './mock'
@@ -22,6 +23,7 @@ Vue.directive('lazy', vLazy)
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
 

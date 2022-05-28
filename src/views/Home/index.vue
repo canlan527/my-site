@@ -24,33 +24,29 @@
         @click="switchTo(i)"
       ></li>
     </ul>
-    <!-- <loading v-if="isLoading"></loading> -->
   </div>
 </template>
 
 <script>
-import { getBanners } from "@/api/banner";
+import { mapState } from 'vuex';
 import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icons";
-import fetchData from '@/mixins/fetchData.js';
 
-// import Loading from '@/components/Loading/'
 export default {
   name: "Home",
-  mixins: [fetchData([])],
   data() {
     return {
-      // banners: [],
       index: 0,
       containerHeight: 0,
       switching: false, // 是否正在滚动banner
-      // isLoading: true
     };
+  },
+  created() {
+    this.$store.dispatch('banner/fetchData');
   },
   components: {
     CarouselItem,
     Icon,
-    // Loading,
   },
   computed: {
     marginTop() {
@@ -58,11 +54,8 @@ export default {
         "margin-top": -this.index * this.containerHeight + "px",
       };
     },
+    ...mapState('banner', ['isLoading', 'data'])
   },
-  // async created() {
-  //   this.banners = await getBanners();
-  //   this.isLoading = false;
-  // },
   mounted() {
     this.containerHeight = this.$refs.carousel.clientHeight;
     window.addEventListener("resize", this.handleResize, false);
@@ -74,9 +67,6 @@ export default {
     // 切换轮播图下标
     switchTo(i) {
       this.index = i;
-    },
-    async fetchData(){
-      return await getBanners();
     },
     // 鼠标滚轮事件
     handleWheel(e) {
