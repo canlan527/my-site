@@ -1,7 +1,7 @@
 <template>
-  <div class="project-container">
-    <div class="project">
-      <ul class="project-list">
+  <div class="project-container" >
+    <div class="project" ref="mainContainer">
+      <ul class="project-list" >
         <li
           class="project-list-item"
           v-for="item in projectList"
@@ -36,9 +36,10 @@
 
 <script>
 import { mapState } from "vuex";
-
+import scrollToTop from '@/mixins/scrollToTop'
 
 export default {
+  mixins: [scrollToTop('mainContainer')],
   created() {
     this.$store.dispatch("project/fetchProject");
   },
@@ -74,6 +75,7 @@ export default {
     width: 100%;
     height: 100%;
     overflow-y: auto;
+    scroll-behavior: smooth;
     .project-list {
     width: 100%;
     height: 100%;
