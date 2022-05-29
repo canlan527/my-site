@@ -18,7 +18,6 @@ export default {
     async fetchProject(ctx) {
       ctx.commit('setLoading', true);
       const res = await getProject();
-      console.log(res)
       ctx.commit('setData', res);
       ctx.commit('setLoading', false);
     }

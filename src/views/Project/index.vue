@@ -27,6 +27,7 @@
             <div class="desc">{{ item.description }}</div>
           </div>
         </li>
+        <i></i><i></i><i></i><i></i>
       </ul>
     </div>
     <div class="bg"></div>
@@ -35,7 +36,7 @@
 
 <script>
 import { mapState } from "vuex";
-import bgImg from "@/assets/images/th.png";
+
 
 export default {
   created() {
@@ -81,15 +82,19 @@ export default {
     flex-wrap: wrap;
     justify-content: space-around;
     .project-list-item {
-      max-width: 466px;
+      // float: left;
+      width: 40%;
+      max-width: 446px;
       min-width: 260px;
       height: 426px;
-      display: inline-block;
+      // display: inline-block;
       box-sizing: border-box;
       padding: 20px 24px 10px 24px;
       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      // margin: 0 20px 26px 0;
       margin-bottom: 26px;
       border-radius: 12px;
+      
       &:hover {
         transition: all 0.4s;
         transform: translate(-5px, -5px);
@@ -115,6 +120,12 @@ export default {
           text-overflow: ellipsis;
         }
       }
+    }
+    /* 和列表一样的宽度和margin值 */
+    i {
+      width: 40%;
+      max-width: 446px;
+      min-width: 260px;
     }
   }
   }
