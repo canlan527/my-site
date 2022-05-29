@@ -34,7 +34,7 @@ function handleScroll() {
   setImages();
 }
 
-eventBus.$on("mainScroll", debounce(handleScroll));
+eventBus.$on("mainScroll", debounce(handleScroll, 50));
 
 export default {
   inserted(el, binding) {
@@ -43,6 +43,7 @@ export default {
       src: binding.value,
     };
     imgs.push(img);
+    setSingerImg(img);//立即处理一次图片
   },
   unbind(el) {
     imgs = imgs.filter((it) => it.dom != el);

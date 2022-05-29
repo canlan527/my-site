@@ -22,17 +22,6 @@ export default {
       ctx.commit('setLoading', false);
 
       if(res.favicon) {
-        // <link rel="icon" href="/favicon.ico">
-        // let link = document.querySelector('link[rel="icon"]');
-        // if(link) {
-        //   return;
-        // }
-        // link = document.createElement('link');
-        // link.href = res.favatar
-        // link.rel = "icon"
-        // link.type = 'images/x-icon';
-        // document.querySelector('head').appendChild(link);
-
         let link = document.querySelector('link[rel="shortcut icon"]');
         if(link) {
           return;

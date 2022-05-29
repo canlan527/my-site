@@ -4,7 +4,7 @@ Mock.mock('/api/setting', 'get', {
   code: 0, 
   msg: '',
   data: {
-    avatar: "https://avatars.githubusercontent.com/u/36915498?v=4",
+    avatar: "	https://portrait.gitee.com/uploads/avatars/user/1623/4871556_canlan0711_1578976114.png!avatar200",
     siteTitle: "我的个人空间", 
     github: "https://github.com/canlan527", 
     qq: "1481086138", 
@@ -14,7 +14,7 @@ Mock.mock('/api/setting', 'get', {
     mail: "1481086138@qq.com", 
     icp: "晋ICP备1234007号", 
     githubName: "canlan527", 
-    favicon: "https://avatars.githubusercontent.com/u/36915498?s=40&v=4", 
+    favicon: "https://cdn.afterdawn.fi/v3/news/original/github-logo.png", 
   }
 })
 
