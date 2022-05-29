@@ -1,4 +1,5 @@
 import { getSetting } from '@/api/setting';
+import {setTitle} from '@/utils'
 
 export default {
   namespaced: true,
@@ -31,6 +32,10 @@ export default {
         link.type = 'images/x-icon';
         link.href = res.favicon;
         document.querySelector('head').appendChild(link);
+      }
+      // 设置网站标题
+      if(res.siteTitle) {
+        setTitle.setSiteTitle(res.siteTitle)
       }
     }
   }

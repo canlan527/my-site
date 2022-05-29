@@ -20,6 +20,7 @@ import fetchData from '@/mixins/fetchData'
 import scrollToTop from '@/mixins/scrollToTop'
 import { getBlog } from '@/api/blog'
 import BlogComment from './components/BlogComment.vue'
+import {setTitle} from '@/utils'
 
 export default {
   mixins: [fetchData({}),scrollToTop('mainContainer')],
@@ -45,7 +46,9 @@ export default {
 
   methods: {
     async fetchData() {
-      return await getBlog(this.$route.params.id)
+      const res = await getBlog(this.$route.params.id)
+      setTitle.setRouteTitle(res.title)
+      return res;
     },
   }
 }
