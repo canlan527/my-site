@@ -13,6 +13,7 @@ export default {
   },
   created() {
     this.$bus.$on('mainScroll', this.handleScroll)
+
   },
   methods: {
     handleScroll(dom) {
