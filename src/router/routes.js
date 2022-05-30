@@ -1,9 +1,10 @@
-import Home from '@/views/Home'
-import About from '@/views/About'
-import Blog from '@/views/Blog'
-import BlogDetail from '@/views/Blog/Detail'
-import Message from '@/views/Message'
-import Project from '@/views/Project'
+// 页面分包： 路由懒加载
+const Home = () => import('@/views/Home'/* webpackChunkName: Home */);
+const About = () => import('@/views/About'/* webpackChunkName: About */);
+const Project = () => import('@/views/Project'/* webpackChunkName: Project */);
+const Message = () => import('@/views/Message'/* webpackChunkName: Message */);
+const Blog = () => import('@/views/Blog'/* webpackChunkName: Blog */);
+const BlogDetail = () => import('@/views/Blog/Detail'/* webpackChunkName: BlogDetail */);
 
 const routes = [
   { name: 'Home', path: '/', component: Home,meta: { title: '首页'}}, 
