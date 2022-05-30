@@ -4,51 +4,51 @@ import qs from "querystring";
 Mock.mock("/api/blogtypes", "get", {
   code: 0,
   msg: "",
-  // "data|10-20": [
-  //   {
-  //     "id|+1": 1,
-  //     name: "分类@id",
-  //     "articleCount|0-300": 0,
-  //     "order|+1": 1,
-  //   },
-  // ],
-  data: [],
+  "data|10-20": [
+    {
+      "id|+1": 1,
+      name: "分类@id",
+      "articleCount|0-300": 0,
+      "order|+1": 1,
+    },
+  ],
+  // data: [],
 });
 
 Mock.mock(/^\/api\/blog(\?.+)?$/, "get", function(options) {
   const query = qs.parse(options.url);
   // console.log(query)
-  // return Mock.mock({
-  //   code: 0,
-  //   msg: "",
-  //   data: {
-  //     "total|2000-3000": 0,
-  //     [`rows|${query.limit || 10}`]: [
-  //       {
-  //         id: "@guid",
-  //         title: "@ctitle(5, 24)",
-  //         description: "@cparagraph(1, 10)",
-  //         category: {
-  //           "id|1-10": 1,
-  //           name: "分类@id",
-  //         },
-  //         "scanNumber|0-3000": 0,
-  //         "commentNumber|0-300": 30,
-  //         "thumb|1": ["@image(300X250, @color, #fff,@natural)", null],
-  //         createDate: "@date(T)",
-  //         //createDate: `@now('second')`
-  //       },
-  //     ],
-  //   },
-  // });
   return Mock.mock({
     code: 0,
     msg: "",
     data: {
-      total: 0,
-      rows: [],
+      "total|2000-3000": 0,
+      [`rows|${query.limit || 10}`]: [
+        {
+          id: "@guid",
+          title: "@ctitle(5, 24)",
+          description: "@cparagraph(1, 10)",
+          category: {
+            "id|1-10": 1,
+            name: "分类@id",
+          },
+          "scanNumber|0-3000": 0,
+          "commentNumber|0-300": 30,
+          "thumb|1": ["@image(300X250, @color, #fff,@natural)", null],
+          createDate: "@date(T)",
+          //createDate: `@now('second')`
+        },
+      ],
     },
   });
+  // return Mock.mock({
+  //   code: 0,
+  //   msg: "",
+  //   data: {
+  //     total: 0,
+  //     rows: [],
+  //   },
+  // });
 });
 
 Mock.mock(/^\/api\/blog\/[^/]+$/, "get", {
