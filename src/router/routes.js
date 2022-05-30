@@ -51,6 +51,10 @@ const BlogDetail = getPageComponent(() =>
 const routes = [
   { name: "Home", path: "/", component: Home, meta: { title: "首页" } },
   {
+    path: "/index.html",
+    redirect: "/",
+  },
+  {
     name: "About",
     path: "/about",
     component: About,
