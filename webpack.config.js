@@ -6,7 +6,7 @@ if(process.env.NODE_ENV === 'production') {
     externals: {
       vue: 'Vue',
       vuex: 'Vuex',
-      'vue-router': 'vuex-router',
+      'vue-router': 'VueRouter',
       axios: 'axios',
     }
   }

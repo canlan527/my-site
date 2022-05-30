@@ -11,7 +11,9 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <img style="position: fixed; top:50%; left:50%; width:200px;height:200px;margin-left:-100px;margin-top: -100px;" src="./imgs/loading.gif" alt="">
+    </div>
     <!-- built files will be auto injected -->
     <% if(NODE_ENV === `production`) { %>
     <script crossorigin="anonymous" integrity="sha384-OZmxTjkv7EQo5XDMPAmIkkvywVeXw59YyYh6zq8UKfkbor13jS+5p8qMTBSA1q+F" src="https://lib.baomitu.com/vue/2.6.11/vue.min.js"></script>
