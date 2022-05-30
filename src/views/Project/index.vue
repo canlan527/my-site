@@ -1,7 +1,7 @@
 <template>
-  <div class="project-container" >
+  <div class="project-container">
     <div class="project" ref="mainContainer">
-      <ul class="project-list" >
+      <ul class="project-list">
         <li
           class="project-list-item"
           v-for="item in projectList"
@@ -27,19 +27,27 @@
             <div class="desc">{{ item.description }}</div>
           </div>
         </li>
-        <i></i><i></i><i></i><i></i>
+        <i></i
+        ><i></i
+        ><i></i
+        ><i></i>
       </ul>
     </div>
+    <empty
+      v-if="projectList.length === 0 && !isloading"
+      text="暂无数据"
+    ></empty>
     <div class="bg"></div>
   </div>
 </template>
 
 <script>
+import Empty from "@/components/Empty";
 import { mapState } from "vuex";
-import scrollToTop from '@/mixins/scrollToTop'
+import scrollToTop from "@/mixins/scrollToTop";
 
 export default {
-  mixins: [scrollToTop('mainContainer')],
+  mixins: [scrollToTop("mainContainer")],
   created() {
     this.$store.dispatch("project/fetchProject");
   },
@@ -48,6 +56,9 @@ export default {
       isloading: "isLoading",
       projectList: "data",
     }),
+  },
+  components: {
+    Empty,
   },
 };
 </script>
@@ -77,60 +88,59 @@ export default {
     overflow-y: auto;
     scroll-behavior: smooth;
     .project-list {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    .project-list-item {
-      // float: left;
-      width: 40%;
-      max-width: 446px;
-      min-width: 260px;
-      height: 426px;
-      // display: inline-block;
+      width: 100%;
+      height: 100%;
       box-sizing: border-box;
-      padding: 20px 24px 10px 24px;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-      // margin: 0 20px 26px 0;
-      margin-bottom: 26px;
-      border-radius: 12px;
-      
-      &:hover {
-        transition: all 0.4s;
-        transform: translate(-5px, -5px);
-      }
-      .img {
-        width: 100%;
-        height: 200px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      .project-list-item {
+        // float: left;
+        width: 40%;
+        max-width: 446px;
+        min-width: 260px;
+        height: 426px;
+        // display: inline-block;
+        box-sizing: border-box;
+        padding: 20px 24px 10px 24px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        // margin: 0 20px 26px 0;
+        margin-bottom: 26px;
+        border-radius: 12px;
 
-        img {
+        &:hover {
+          transition: all 0.4s;
+          transform: translate(-5px, -5px);
+        }
+        .img {
           width: 100%;
-          height: 100%;
-          display: inline-block;
-          border-radius: 12px;
+          height: 200px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            border-radius: 12px;
+          }
+        }
+        .content {
+          width: 100%;
+          .desc {
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
       }
-      .content {
-        width: 100%;
-        .desc {
-          width: 100%;
-          height: 100%;
-          font-size: 14px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+      /* 和列表一样的宽度和margin值 */
+      i {
+        width: 40%;
+        max-width: 446px;
+        min-width: 260px;
       }
     }
-    /* 和列表一样的宽度和margin值 */
-    i {
-      width: 40%;
-      max-width: 446px;
-      min-width: 260px;
-    }
   }
-  }
-  
 }
 </style>

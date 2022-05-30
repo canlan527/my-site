@@ -2,10 +2,15 @@
   <div class="bloglist-container" v-loading="isLoading">
     <div class="blog-bigImg" :style="bigImgStyle"></div>
     <ul class="blog-ul">
-      <li class="blog-list-item" v-for="item in data.rows" :key="item.id" @click="goToBlogDetail(item)">
+      <li
+        class="blog-list-item"
+        v-for="item in data.rows"
+        :key="item.id"
+        @click="goToBlogDetail(item)"
+      >
         <div class="blog-top">
-          <div class="content" >
-            <a class="title" >{{ item.title }}</a>
+          <div class="content">
+            <a class="title">{{ item.title }}</a>
             <p class="abstract">
               {{ item.description }}
             </p>
@@ -18,13 +23,18 @@
         <div class="meta">
           <span class="like">❤️ {{ item.scanNumber }}</span>
           <span class="comment-count">评论：{{ item.commentNumber }}</span>
-          <span class="blog-cate" @click.stop="gotoCate(item)">分类：{{ item.category.name }}</span>
+          <span class="blog-cate" @click.stop="gotoCate(item)"
+            >分类：{{ item.category.name }}</span
+          >
           <span class="meta-time">时间：{{ fmtDate(item.createDate) }}</span>
         </div>
       </li>
     </ul>
+    <!-- 空数据缺省 -->
+    <empty v-if="!isLoading && data.rows.length === 0" text="暂无数据"></empty>
     <!-- 分页组件 -->
     <pager
+      v-if="data.rows.length > 0"
       :current="routeInfo.page"
       :total="data.total"
       :limit="routeInfo.limit"
@@ -35,6 +45,7 @@
 </template>
 
 <script>
+import Empty from "@/components/Empty";
 import pic from "@/assets/images/3.jpg";
 import { getBlogList } from "@/api/blog";
 import Pager from "@/components/Pager";
@@ -43,7 +54,7 @@ import blogBigImg from "@/assets/images/th.png";
 import { fmtDate } from "@/utils";
 
 export default {
-  mixins: [fetchData({})],
+  mixins: [fetchData({ total: 0, rows: [] })],
   data() {
     return {
       pic,
@@ -53,6 +64,7 @@ export default {
   },
   components: {
     Pager,
+    Empty,
   },
   created() {
     console.log(this.routeInfo);
@@ -115,19 +127,19 @@ export default {
     },
     // 跳转对应的文章分类路由
     gotoCate(item) {
-      console.log(item)
+      console.log(item);
       this.$router.push({
-        name: 'cateBlog',
+        name: "cateBlog",
         params: { cateId: item.category.id },
-      })
+      });
     },
     // 跳转到博客详情
     goToBlogDetail(item) {
       this.$router.push({
-        name: 'blogDetail',
-        params: { id: item.id }
-      })
-    }
+        name: "blogDetail",
+        params: { id: item.id },
+      });
+    },
   },
 };
 </script>
@@ -141,6 +153,7 @@ export default {
   box-sizing: border-box;
   margin: 0 auto;
   padding: 30px;
+  position: relative;
   .blog-bigImg {
     width: 100%;
     height: 400px;
@@ -217,6 +230,9 @@ export default {
       transform: translate(-5px, -5px);
       transition: 1s;
     }
+  }
+  .empty-container {
+    margin-top: 470px;
   }
 }
 </style>
