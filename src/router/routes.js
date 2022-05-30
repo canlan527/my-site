@@ -1,5 +1,6 @@
 import "nprogress/nprogress.css";
 import { start, done, configure } from "nprogress";
+import NotFound from "@/views/NotFound";
 
 configure({
   trickleSpeed: 20,
@@ -79,6 +80,11 @@ const routes = [
     path: "/blog/:id",
     component: BlogDetail,
     meta: { title: "文章详情" },
+  },
+  {
+    name: "NotFound",
+    path: "*",
+    component: NotFound,
   },
 ];
 
